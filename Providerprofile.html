@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .profile-header {
+      background-color: #f8f9fa;
+      padding: 2rem;
+      text-align: center;
+    }
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .profile-info {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container my-5">
+
+  <!-- Profile Header -->
+  <div class="profile-header mb-4">
+    <img src="imgs/elect.jpg" class="profile-pic mb-2" alt="User Profile Picture">
+    <h3 class="mb-0">Ahmad Al-Tamimi</h3>
+    <p class="text-muted">Electrician | Amman, Jordan</p>
+    <span class="badge bg-success">Top Tasker</span>
+  </div>
+
+  <!-- Profile Info -->
+  <div class="profile-info">
+    <h5 class="mb-3">Personal Information</h5>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <strong>Email:</strong> ahmad@example.com
+        
+  <input type="text" class="form-control" value="ahmad@example.com" readonly>
+      </div>
+      <div class="col-md-6">
+        <strong>Phone:</strong> +962 77 123 4567
+        
+  <input type="tel" class="form-control" value="0771234567" readonly>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <strong>Gender:</strong> Male
+      </div>
+      <div class="col-md-6">
+        <strong>Rating:</strong> ⭐ 4.9 (150 Reviews)
+      </div>
+    </div>
+    <div class="mb-3">
+      <strong>Bio:</strong>
+      <p>I’m a certified electrician with over 5 years of experience. I provide safe and affordable home and office electrical services.</p>
+    
+  <input type="text" class="form-control" placeholder="add more bio " readonly>
+    </div>
+
+    <h5 class="mt-4 mb-3">Skills & Experience</h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Wiring and Installation</li>
+      <li class="list-group-item">Lighting Repair</li>
+      <li class="list-group-item">AC Maintenance</li>
+    </ul>
+
+    <div class="mt-4 text-end">
+      <a href="edit-profile-tasker.php?user_id=<?= $_SESSION['userid'] ?>" class="btn btn-primary">Edit Profile</a>
+    </div>
+  </div>
+
+</div>
+<form action="Providerprofile.php" method="POST" class="text-end apply-btn">
+  <input type="hidden" name="task_id" value="1"> <!-- Replace 1 with actual task ID -->
+  <button type="submit" class="btn btn-success btn-lg">Apply for Task</button>
+  
+</form>
+
+
+</body>
+</html>

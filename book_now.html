@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Book a Service | HouseHero</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    section {
+      padding: 60px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+      <img src="imgs/worker.png" alt="Logo" style="height: 50px; margin-right: 30px;">
+      <a class="navbar-brand fw-bold">HouseHero</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Booking Form Section -->
+  <section class="bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold">Book a Service</h2>
+      <div class="row">
+        <!-- Service Selection -->
+        <div class="col-md-6">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="card-title">Select Service</h4>
+              <form>
+                <div class="mb-3">
+                  <label for="serviceSelect" class="form-label">Choose your service:</label>
+                  <select id="serviceSelect" name="service" class="form-select" required>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="Electrician">Electrician</option>
+                    <option value="cleaning">Cleaning</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking Form Details (Dynamic) -->
+        <div class="col-md-6">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="card-title">Booking Information</h4>
+              <!-- Updated Form for Booking a Service -->
+              <form action="book_now.php" method="POST">
+                <div class="mb-3">
+                  <label for="customerName" class="form-label">Your Name</label>
+                  <input type="text" id="customerName" name="customer_name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="customerPhone" class="form-label">Phone Number</label>
+                  <input type="tel" id="customerPhone" name="customer_phone" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="serviceDate" class="form-label">Preferred Service Date</label>
+                  <input type="date" id="serviceDate" name="service_date" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="serviceSelect" class="form-label">Choose your service:</label>
+                  <select id="serviceSelectForm" name="service_type" class="form-select" required>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="Electrician">Electrician</option>
+                    <option value="cleaning">Cleaning</option>
+                  </select>
+                </div>
+                <div id="serviceDetails" class="mb-3">
+                  <!-- Service-specific details will go here -->
+                </div>
+                <button type="submit" class="btn btn-primary">Book Now</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    © 2025 HouseHero. All rights reserved.
+  </footer>
+
+  <!-- JavaScript: Bootstrap Bundle + Custom Dynamic Fields -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function updateServiceDetails(service) {
+      const serviceDetails = document.getElementById('serviceDetails');
+      if (service === 'plumbing') {
+        serviceDetails.innerHTML = `
+          <label for="plumbingDetails" class="form-label">Plumbing Details</label>
+          <textarea id="plumbingDetails" name="service_details" class="form-control" rows="3" placeholder="Describe your plumbing issue..."></textarea>
+        `;
+      } else if (service === 'Electrician') {
+        serviceDetails.innerHTML = `
+          <label for="electricianDetails" class="form-label">Electrician Details</label>
+          <textarea id="electricianDetails" name="service_details" class="form-control" rows="3" placeholder="Describe the electrical issue..."></textarea>
+        `;
+      } else if (service === 'cleaning') {
+        serviceDetails.innerHTML = `
+          <label for="cleaningDetails" class="form-label">Cleaning Details</label>
+          <textarea id="cleaningDetails" name="service_details" class="form-control" rows="3" placeholder="Describe the cleaning job..."></textarea>
+        `;
+      } else {
+        serviceDetails.innerHTML = '';
+      }
+    }
+
+    // Listen to both dropdowns (if needed)
+    document.getElementById('serviceSelect').addEventListener('change', function () {
+      updateServiceDetails(this.value);
+    });
+
+    document.getElementById('serviceSelectForm').addEventListener('change', function () {
+      updateServiceDetails(this.value);
+    });
+
+    // Trigger initial load
+    document.addEventListener("DOMContentLoaded", function () {
+      const initialService = document.getElementById('serviceSelectForm').value;
+      updateServiceDetails(initialService);
+    });
+  </script>
+</body>
+
+</html>
